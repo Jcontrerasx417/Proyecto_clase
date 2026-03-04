@@ -62,7 +62,7 @@
         <div class="product-card bg-white/5 border border-white/10 rounded-xl overflow-hidden flex flex-col">
           <div class="relative aspect-video bg-slate-800">
             <img 
-              src="{{ $item->imagen ?? 'https://via.placeholder.com/400x225?text=Hardware' }}" 
+              src="{{ $item->image ?? 'https://via.placeholder.com/400x225?text=Hardware' }}" 
               alt="{{ $item->nombre }}"
               class="w-full h-full object-cover"
             >

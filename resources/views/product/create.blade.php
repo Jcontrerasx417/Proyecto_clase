@@ -105,7 +105,7 @@
       </div>
 
       <div class="glass-effect rounded-xl p-8 shadow-2xl">
-        <form action="{{ route('product.store') }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form action="{{ route('product.store') }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6" enctype="multipart/form-data">
           @csrf
 
           <div class="md:col-span-2 group">
@@ -189,21 +189,31 @@
           </div>
 
           <div class="md:col-span-2">
-            <label class="block text-sm font-bold text-slate-300 mb-2">
-              Imágenes del Producto
-            </label>
-            <div class="border-2 border-dashed border-[#3b4e54] rounded-xl p-10 flex flex-col items-center
-                        justify-center bg-[#162226]/50 hover:bg-[#162226] hover:border-primary transition-all cursor-pointer">
-              <label class="flex flex-col items-center justify-center w-full h-full cursor-pointer group/upload">
-                <span class="material-symbols-outlined text-primary text-5xl mb-3 group-hover/upload:scale-110 transition-transform">
-                  cloud_upload
-                </span>
-                <p class="text-white font-semibold">Haz clic para subir o arrastra y suelta</p>
-                <p class="text-slate-500 text-sm mt-1">PNG, JPG o WEBP (Máx. 10MB)</p>
-                <input type="file" accept="image/*" multiple class="hidden" />
-              </label>
-            </div>
-          </div>
+  <label class="block text-sm font-bold text-slate-300 mb-2">
+    Imágenes del Producto
+  </label>
+  <div class="border-2 border-dashed border-[#3b4e54] rounded-xl p-10 flex flex-col items-center
+              justify-center bg-[#162226]/50 hover:bg-[#162226] hover:border-primary transition-all cursor-pointer">
+    
+    <label for="foto-input" class="flex flex-col items-center justify-center w-full h-full cursor-pointer group/upload">
+      <span class="material-symbols-outlined text-primary text-5xl mb-3 group-hover/upload:scale-110 transition-transform">
+        cloud_upload
+      </span>
+      <p class="text-white font-semibold">Haz clic para subir o arrastra y suelta</p>
+      
+      <p id="file-name" class="text-slate-500 text-sm mt-1 text-center">PNG, JPG o WEBP (Máx. 10MB)</p>
+      
+      <input 
+        type="file" 
+        name="foto" 
+        id="foto-input" 
+        accept="image/*" 
+        class="hidden" 
+        onchange="document.getElementById('file-name').innerText = 'Seleccionado: ' + this.files[0].name; document.getElementById('file-name').classList.replace('text-slate-500', 'text-primary')"
+      />
+    </label>
+  </div>
+</div>
 
           <div class="md:col-span-2 pt-4">
             <button

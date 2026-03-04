@@ -30,6 +30,16 @@ class ProductController extends Controller
         $newProduct->price = $request->get("precio");
         $newProduct->category_id = $request->get("categoria");
         
+        if($request->hasFile("foto")){
+            $ruta = $request->file("foto")->store("imagen", "public");
+            $newProduct->image = $ruta;
+
+        }else{
+            $newProduct->image = "no hay ruta" ;
+        }
+        
+
+
         $newProduct->save();
 
 
