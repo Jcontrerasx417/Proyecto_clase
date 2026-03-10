@@ -101,6 +101,21 @@
 
       <div class="mb-10 text-center md:text-left">
         <h2 class="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight">Publicar Producto</h2>
+        
+        <br>
+        
+        @if ($errors->any())
+          <div style="color : red">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+          </div>
+        @endif
+
+
+        <br>
+
+
         <p class="text-slate-400 text-lg">Vende tu hardware de última generación con los mejores precios del mercado.</p>
       </div>
 
@@ -113,13 +128,14 @@
               Nombre del Producto
             </label>
             <input
+              value="{{ old('nombre') }}"
               type="text"
               name="nombre"
               class="w-full bg-[#162226] border border-[#3b4e54] rounded-lg px-4 py-3 text-white
                      focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all
                      placeholder:text-slate-500"
               placeholder="Ej: NVIDIA GeForce RTX 4090 Founders Edition"
-              required
+              
             />
           </div>
 
@@ -130,6 +146,7 @@
             <div class="relative">
               <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">$</span>
               <input
+                value="{{ old('precio') }}"
                 type="number"
                 name="precio"
                 step="0.01"
@@ -137,7 +154,7 @@
                        focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all
                        placeholder:text-slate-500"
                 placeholder="0.00"
-                required
+                
               />
             </div>
           </div>
@@ -165,7 +182,7 @@
               name="categoria"
               class="w-full bg-[#162226] border border-[#3b4e54] rounded-lg px-4 py-3 text-white
                      focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
-              required
+      
             >
               @foreach ($categorias as $categoria)
                 <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
@@ -178,13 +195,14 @@
               Descripción Detallada
             </label>
             <textarea
+              value="{{ old('descripcion') }}"
               name="descripcion"
               class="w-full bg-[#162226] border border-[#3b4e54] rounded-lg px-4 py-3 text-white
                      focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all
                      placeholder:text-slate-500 resize-none"
               placeholder="Especificaciones técnicas, tiempo de uso, motivos de venta..."
               rows="5"
-              required
+              
             ></textarea>
           </div>
 
