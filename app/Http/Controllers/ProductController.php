@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function index(){
-        $productlist=Product::all();
+        $productlist=Product::paginate(9);
 
 
         return view("product.index", [
@@ -31,7 +31,7 @@ class ProductController extends Controller
             "descripcion" => "required",
             "precio" => "required|numeric", 
             "categoria" => "required|exists:categories,id",
-            "foto" => "requiered"
+            "foto" => "required"
         ]);
 
 
@@ -63,6 +63,11 @@ class ProductController extends Controller
 
     public function show($id){
         return view("product.show");
+    }
+
+    public function destroy(Product $product){
+        $product->delete();
+        return redirect()->route("product.index");
     }
     
 }
