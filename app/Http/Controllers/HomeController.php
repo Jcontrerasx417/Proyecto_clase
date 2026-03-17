@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
-    public function __invoke()  
+    public function __invoke()
     {
-        return view('Welcome');
+        $productos = Product::all(); // 👈 trae productos de la BD
+        return view('landing', compact('productos'));
     }
-
 }

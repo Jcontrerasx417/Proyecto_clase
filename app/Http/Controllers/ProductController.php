@@ -62,9 +62,12 @@ class ProductController extends Controller
 
 
     public function show($id){
-        return view("product.show");
-    }
+    $product = Product::findOrFail($id);
 
+    return view("product.show", [
+        "producto" => $product
+    ]);
+   }
     public function destroy(Product $product){
         $product->delete();
         return redirect()->route("product.index");
